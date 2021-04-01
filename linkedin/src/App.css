@@ -7,6 +7,16 @@
 #input_header:focus {
   box-shadow: none;
 }
+#header_icons:hover {
+  color: black;
+}
+.connection_sidebar:hover,
+.who_viewed_sidebar:hover,
+.access_sidebar:hover,
+.items_sidebar:hover {
+  background-color: rgb(212, 212, 212);
+  cursor: pointer;
+}
 @media screen and (max-width: 63em) {
   #search_small,
   #hide_label_header {

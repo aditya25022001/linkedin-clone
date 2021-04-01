@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+}
+#show_small_search {
+  display: none;
+}
+#input_header:focus {
+  box-shadow: none;
+}
+@media screen and (max-width: 63em) {
+  #search_small,
+  #hide_label_header {
+    display: none;
+  }
+  #show_small_search {
+    display: flex;
+  }
+}
+#try_premium:hover {
+  text-decoration: underline;
+}

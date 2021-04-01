@@ -1,48 +1,63 @@
 import React from 'react'
-import '../styles/header.css'
+import '../App.css'
+import { NavLinkComponent } from './NavLinkComponent'
+import { Navbar, Nav, Container, InputGroup, FormControl } from 'react-bootstrap'
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SmsIcon from '@material-ui/icons/Sms';
 import WorkIcon from '@material-ui/icons/Work';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import GroupIcon from '@material-ui/icons/Group';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import MoreHorizRoundedIcon from '@material-ui/icons/MoreHorizRounded';
 import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
+import GroupIcon from '@material-ui/icons/Group';
 
 export const Header = () => {
+
     return (
-        <div className='py-2 px-3' id='header'>
-            <div id='div_part_one_header' style={{ display:'flex', flexDirection:'row', justifyContent:'space-between', flex:0.6 }}>
-                <div id='div_part_one_subpart_one' style={{ display:'flex', flexDirection:'row'}}>
-                    <LinkedInIcon style={{ fontSize:'6vh', color:'rgb(13,120,191)' }}/>
-                    <div className='search_small_screen_display'>
-                        <SearchRoundedIcon/>
-                    </div>
-                    <div className='search_header'>
-                        <SearchRoundedIcon/>
-                        <input type="text" placeholder="Search"/>
-                    </div>
+        <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className='mt-0 py-0 border-bottom'>
+            <Container className='p-0 mt-0'>
+                <Navbar.Brand href="/"><LinkedInIcon style={{ fontSize:'6vh', color:'rgb(2,110,199)' }}/></Navbar.Brand>
+                <div id='show_small_search'>
+                    <Nav className='mr-auto'>
+                        <Nav.Link>
+                            <SearchRoundedIcon/>
+                        </Nav.Link>
+                    </Nav>
                 </div>
-                <div id='div_part_one_subpart_two' style={{  display:'flex', flexDirection:'row', justifyContent:'space-between', flex:0.6}}>
-                    <HomeRoundedIcon/>
-                    <SupervisorAccountIcon/>
-                    <WorkIcon/>
-                    <SmsIcon/>
-                    <NotificationsIcon/>
+                <div id='search_small' className='mr-5'>
+                    <Nav className="mr-5">
+                        <InputGroup className="rounded bg-light text-dark mr-5" id='input_header'>
+                            <InputGroup.Prepend>
+                                <InputGroup.Text className='bg-light text-dark border-0' id="basic-addon1"><SearchRoundedIcon/></InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl 
+                                id='input_header'
+                                className='bg-light text-dark border-0 p-0 rounded'
+                                placeholder="Search"
+                            />
+                        </InputGroup>
+                    </Nav>
                 </div>
-            </div>
-            <div id='div_part_two_header' style={{  display:'flex', flexDirection:'row'}}>
-                <div className='more_small_screen_display'>
-                    <MoreHorizRoundedIcon/>
-                </div>
-                <div className='more_from_linked_in'>
-                    <AppsIcon/>
-                </div>
-                <a href='/'>Try premium for one month</a>
-            </div>
-        </div>
+                <NavLinkComponent className='mr-5' href='/' more={false} icon={<HomeRoundedIcon style={{ fontSize:25 }} />} label='Home' last={false}/>
+                <NavLinkComponent className='mr-5' href='/' more={false} icon={<SupervisorAccountIcon style={{ fontSize:25 }} />} label='My Network' last={false}/>
+                <NavLinkComponent className='mr-5' href='/' more={false} icon={<WorkIcon style={{ fontSize:25 }} />} label='Jobs' last={false}/>
+                <NavLinkComponent className='mr-5' href='/' more={false} icon={<SmsIcon style={{ fontSize:25 }} />} label='Mesaging' last={false}/>
+                <NavLinkComponent href='/' more={false} icon={<NotificationsIcon style={{ fontSize:25 }} />} label='Notifications' last={true}/>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ border:'none' }} >
+                    <span style={{ border:'none' }}>
+                        <MoreHorizRoundedIcon/>
+                    </span>
+                </Navbar.Toggle>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <NavLinkComponent href='/' last={false} icon={<AppsIcon style={{ fontSize:25 }}/>} label='More' more={true} moreIcon={<ArrowDropDownRoundedIcon/>}/>
+                    <Nav>
+                        <Nav.Link href="/" id='try_premium' style={{ fontSize:12, color:'rgb(120,102,1)', width:'70%', textAlign:'center' }} >Try Premium Free for 1 month</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }

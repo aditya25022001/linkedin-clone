@@ -25,13 +25,25 @@
   background-color: rgb(245, 239, 239);
   cursor: pointer;
 }
+#start_post_type:hover {
+  background-color: rgb(231, 231, 231);
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
 @media screen and (max-width: 63em) {
   #search_small,
-  #hide_label_header {
+  #hide_label_header,
+  #sidebar_left,
+  #sidebar_right,
+  #start_post_title {
     display: none;
   }
   #show_small_search {
     display: flex;
+  }
+  #app_body {
+    flex: 1;
+    width: 63em;
   }
 }
 #try_premium:hover {

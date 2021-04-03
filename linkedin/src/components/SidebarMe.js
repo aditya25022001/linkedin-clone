@@ -5,7 +5,7 @@ import '../App.css'
 
 export const SidebarMe = ({ name, education, profileViewers, connections }) => {
     return (
-        <ListGroup style={{ width:'27vh' }} className='mt-3'>
+        <ListGroup style={{ width:'27vh' }}>
             <Image className='rounded-top' src='https://seo-trench.com/wp-content/uploads/2019/11/12-Websites-You-Should-Check-Out-to-Learn-Web-Development-Fast.png'
                 style={{ width:'27vh', height:'8vh' }}
             />

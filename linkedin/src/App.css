@@ -10,11 +10,19 @@
 #header_icons:hover {
   color: black;
 }
+#sidebar_link_heading:hover {
+  text-decoration: underline;
+}
+.App_sidebar,
+.sidebar {
+  background-color: rgb(247, 247, 237);
+}
 .connection_sidebar:hover,
 .who_viewed_sidebar:hover,
 .access_sidebar:hover,
-.items_sidebar:hover {
-  background-color: rgb(212, 212, 212);
+.items_sidebar:hover,
+#list_items_sidebar:hover {
+  background-color: rgb(245, 239, 239);
   cursor: pointer;
 }
 @media screen and (max-width: 63em) {

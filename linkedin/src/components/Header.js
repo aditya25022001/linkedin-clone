@@ -17,7 +17,7 @@ import Avatar from '@material-ui/core/Avatar';
 export const Header = () => {
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className='mt-0 py-0 border-bottom'>
+        <Navbar collapseOnSelect expand="lg" bg="white" variant="light" sticky='top' className='mt-0 py-0 border-bottom'>
             <Container className='p-0 mt-0' >
                 <Navbar.Brand href="/"><LinkedInIcon style={{ fontSize:'6vh', color:'rgb(2,110,199)' }}/></Navbar.Brand>
                 <div id='show_small_search'>

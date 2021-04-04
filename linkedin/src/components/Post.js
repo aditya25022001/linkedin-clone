@@ -20,7 +20,7 @@ export const Post = ({ image, name, description, postDescription, postContent  }
 
     return (
         <ListGroup className='mb-3 rounded'>
-            <ListGroup.Item className='border-bottom-0 d-flex flex-direction-row'>
+            <ListGroup.Item className='border-bottom-0 d-flex flex-direction-row pb-1'>
                 <Avatar src={image}/>
                 <div className='ml-3'>
                     <div className='font-weight-bold pb-0 mb-0' id='name_post' style={{ color:'rgb(71,71,71)' }}>{name}</div>

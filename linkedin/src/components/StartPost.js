@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { ListGroup,InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
+import { ListGroup,InputGroup, FormControl, Button, Alert, Badge } from 'react-bootstrap'
 import PhotoIcon from '@material-ui/icons/Photo';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
@@ -38,7 +38,7 @@ export const StartPost = () => {
             db.collection('posts').add({
                 name:'Aditya Uday Ubale',
                 description:'2nd Year Institute of Engineering and Technology DAVV',
-                postDescription:'Daily linear posts',
+                postDescription:'Daily posts',
                 postContent:postLinear,
                 added:firebase.firestore.FieldValue.serverTimestamp()
             })
@@ -101,7 +101,10 @@ export const StartPost = () => {
                     onClick={e => startPostHandler(e)}
                 >
                     <div style={{ color:'rgb(255,161,197)' }} ><AssignmentRoundedIcon/></div>
-                    <div id='start_post_title' style={{ fontWeight:500, color:'rgb(133,133,133)' }}>Write article</div>
+                    <div id='start_post_title d-flex flex-direction-column' style={{ fontWeight:500, color:'rgb(133,133,133)' }}>
+                        Write article
+                        <Badge variant='success'>working</Badge>
+                    </div>
                 </div>
             </ListGroup.Item>
             {linearValidation!=='' &&             
@@ -113,10 +116,10 @@ export const StartPost = () => {
             <div id='write_article' style={{ width:'auto' }}>
                 <ListGroup>
                     <ListGroup.Item className='border-bottom-0 mb-0'>
-                        <FormControl placeholder='Post heading' id='post_heading' value={postHeading} onChange={e => setPostHeading(e.target.value)}/>
+                        <FormControl placeholder='Article heading' id='post_heading' value={postHeading} onChange={e => setPostHeading(e.target.value)}/>
                     </ListGroup.Item>
                     <ListGroup.Item className='border-bottom-0 mb-0'>
-                        <FormControl as='textarea' id='post_content' value={postContent} placeholder='Start post details' rows={5} onChange={e => setPostContent(e.target.value)}/>
+                        <FormControl as='textarea' id='post_content' value={postContent} placeholder='Article starts here...' rows={5} onChange={e => setPostContent(e.target.value)}/>
                     </ListGroup.Item>
                     <ListGroup.Item 
                         className={postValidation==='' ? `mt-0` : `mt-0 border-bottom-0`}>

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { ListGroup } from 'react-bootstrap'
 import { StartPost } from './StartPost'
 import { Post } from './Post'
@@ -27,7 +28,7 @@ export const Body = () => {
             ?<Loader/> 
             :
              posts.map(post => (
-                <Post 
+                <Post key={uuidv4()}
                     image={post.data.image}
                     name={post.data.name}
                     description={post.data.description}

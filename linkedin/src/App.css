@@ -1,7 +1,9 @@
 * {
   margin: 0;
 }
-#show_small_search {
+#show_small_search,
+#sidebar_show_more,
+#write_article {
   display: none;
 }
 #input_header:focus {
@@ -10,8 +12,11 @@
 #header_icons:hover {
   color: black;
 }
-#sidebar_link_heading:hover {
+#sidebar_link_heading:hover,
+#sidebar_link_heading:hover
+  > #sidebar_show_more {
   text-decoration: underline;
+  display: flex;
 }
 .App_sidebar,
 .sidebar {
@@ -21,7 +26,10 @@
 .who_viewed_sidebar:hover,
 .access_sidebar:hover,
 .items_sidebar:hover,
-#list_items_sidebar:hover {
+#list_items_sidebar:hover,
+#input_post:hover,
+#post_responses:hover,
+#show_more_post:hover {
   background-color: rgb(245, 239, 239);
   cursor: pointer;
 }
@@ -46,6 +54,8 @@
     width: 63em;
   }
 }
-#try_premium:hover {
+#try_premium:hover,
+#name_post:hover {
+  cursor: pointer;
   text-decoration: underline;
 }

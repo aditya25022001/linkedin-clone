@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { ListGroup,InputGroup, FormControl, Button, Alert, Badge } from 'react-bootstrap'
+import { ListGroup,InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
 import PhotoIcon from '@material-ui/icons/Photo';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
@@ -49,7 +49,7 @@ export const StartPost = () => {
 
     const submitHandler = () => { 
         if(postHeading==='' || postContent===''){
-            setPostValidation("Post heading or content cannot be empty")
+            setPostValidation("Article heading or content cannot be empty")
         }
         else{
             db.collection('posts').add({
@@ -73,7 +73,7 @@ export const StartPost = () => {
     return (
         <>
         <ListGroup>
-            <ListGroup.Item className='border-bottom-0' style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}} >
+            <ListGroup.Item className='border-bottom-0 pt-4' style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}} >
                 <Avatar src='https://yt3.ggpht.com/yti/ANoDKi5pL_cvUrjXj2_CHoonnmq4zF8Y6a3DWXJacvcq1w=s88-c-k-c0x00ffffff-no-rj-mo'/>
                 <InputGroup size="lg" className='mr-2'>
                     <FormControl 
@@ -102,8 +102,7 @@ export const StartPost = () => {
                 >
                     <div style={{ color:'rgb(255,161,197)' }} ><AssignmentRoundedIcon/></div>
                     <div id='start_post_title d-flex flex-direction-column' style={{ fontWeight:500, color:'rgb(133,133,133)' }}>
-                        Write article
-                        <Badge variant='success'>working</Badge>
+                        Article
                     </div>
                 </div>
             </ListGroup.Item>

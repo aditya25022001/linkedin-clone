@@ -41,6 +41,10 @@
   background-color: rgb(245, 239, 239);
   cursor: pointer;
 }
+.App {
+  height: 100vh;
+  background-color: rgb(247, 247, 237);
+}
 #start_post_type:hover {
   background-color: rgb(231, 231, 231);
   transition-duration: 0.3s;

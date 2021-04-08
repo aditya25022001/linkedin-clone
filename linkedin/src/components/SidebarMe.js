@@ -1,20 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListGroup, Image } from 'react-bootstrap'
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import '../App.css'
+import Skeleton from '@material-ui/lab/Skeleton';
+import { selectUser } from '../features/userSlice';
+import { useSelector } from 'react-redux';
+import { db } from '../firebase';
+import { Avatar } from '@material-ui/core';
 
-export const SidebarMe = ({ name, education, profileViewers, connections }) => {
+export const SidebarMe = ({ name, description, profileViewers, connections, profilePic, profileBackground}) => {
+
+
+    const [currentUser, setCurrentUser] = useState({})
+
+    const user = useSelector(selectUser)
+    useEffect(()=>{
+        db.collection('linkedInUsers').where('id','==',user.uid).get().then((docs) => {
+            docs.forEach((doc)=>{
+                setCurrentUser(doc.data());
+            })
+        })
+    },[user.uid])
+
+    const setBGColor = () => {
+        return `rgb(${(0.8-Math.random())*255},${(0.8-Math.random())*255},${(0.8-Math.random())*255})`
+    }
+
     return (
         <ListGroup style={{ width:'27vh' }}>
-            <Image className='rounded-top' src='https://seo-trench.com/wp-content/uploads/2019/11/12-Websites-You-Should-Check-Out-to-Learn-Web-Development-Fast.png'
-                style={{ width:'27vh', height:'8vh' }}
-            />
+            {!profileBackground && profileBackground!=='' 
+            ? <Skeleton variant='rect' animation='wave' style={{ width:'27vh', height:'8vh' }}/> 
+            : profileBackground!=='' 
+            ? <Image className='rounded-top' src={profileBackground} style={{ width:'27vh', height:'8vh' }}/>
+            : <div className='rounded-top' style={{ width:'27vh', height:'8vh', backgroundColor:setBGColor() }}></div>
+            }
             <ListGroup.Item style={{ alignItems:'center', textAlign:'center' }}>
                 <div style={{ textAlign:'center', alignItems:'center', marginTop:'-30%'}} className='mb-3'>
-                    <Image roundedCircle src='https://yt3.ggpht.com/yti/ANoDKi5pL_cvUrjXj2_CHoonnmq4zF8Y6a3DWXJacvcq1w=s88-c-k-c0x00ffffff-no-rj-mo' style={{ width:'10vh', height:'10vh', border:'0.4vh solid white' }}/>
+                    {!profilePic && profilePic!=='' 
+                    ? <Skeleton variant='circle' animation='wave' style={{marginLeft:'25%', width:'10vh', height:'10vh', border:'0.4vh solid white' }}/> 
+                    : profilePic!==''
+                    ?<Image roundedCircle src={profilePic} style={{ width:'10vh', height:'10vh', border:'0.4vh solid white' }}/>
+                    :<Avatar style={{ width:'10vh', height:'10vh', marginLeft:'26%', border:'0.4vh solid white', backgroundColor:setBGColor() }}>{currentUser.userName[0].toUpperCase()}</Avatar>
+                    }
                 </div>
                 <div style={{ fontWeight:500 }} className='mb-2'>{name}</div>
-                <div style={{ fontSize:'1.6vh', fontWeight:350 }} >{education}</div>
+                <div style={{ fontSize:'1.6vh', fontWeight:350 }} >{description}</div>
             </ListGroup.Item>
             <ListGroup.Item className='px-0'>
                 <div style={{ fontSize:'1.6vh', display: 'flex', flexDirection:'row', justifyContent: 'space-between'}} className='who_viewed_sidebar px-4'>

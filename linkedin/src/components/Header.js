@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../App.css'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLinkComponent } from './NavLinkComponent'
 import { Navbar, Nav, Container, InputGroup, FormControl } from 'react-bootstrap'
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SmsIcon from '@material-ui/icons/Sms';
 import WorkIcon from '@material-ui/icons/Work';
@@ -13,8 +13,34 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import MoreHorizRoundedIcon from '@material-ui/icons/MoreHorizRounded';
 import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import Avatar from '@material-ui/core/Avatar';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import { logout, selectUser } from '../features/userSlice'
+import { auth, db } from '../firebase'
 
 export const Header = () => {
+
+    const dispatch = useDispatch()
+
+    const setBGColor = () => {
+        return `rgb(${(0.8-Math.random())*255},${(0.8-Math.random())*255},${(0.8-Math.random())*255})`
+    }
+
+    const [currentUser, setCurrentUser] = useState({})
+
+    const user = useSelector(selectUser) 
+
+    useEffect(()=>{
+        db.collection('linkedInUsers').where('id','==',user.uid).get().then(docs => {
+            docs.forEach(doc => {
+                setCurrentUser(doc.data())
+            })              
+        })
+    },[user.uid])
+
+    const logoutOfApp = (e) => {
+        dispatch(logout())
+        auth.signOut();
+    }
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" variant="light" sticky='top' className='mt-0 py-0 border-bottom'>
@@ -41,21 +67,26 @@ export const Header = () => {
                         </InputGroup>
                     </Nav>
                 </div>
-                <NavLinkComponent className='mr-5' href='/' more={false} icon={<HomeRoundedIcon style={{ fontSize:25 }} />} label='Home' last={false}/>
-                <NavLinkComponent className='mr-5' href='/' more={false} icon={<SupervisorAccountIcon style={{ fontSize:25 }} />} label='My Network' last={false}/>
-                <NavLinkComponent className='mr-5' href='/' more={false} icon={<WorkIcon style={{ fontSize:25 }}/>} label='Jobs' last={false} />
-                <NavLinkComponent className='mr-5' href='/' more={false} icon={<SmsIcon style={{ fontSize:25 }} />} label='Messages' last={false}/>
-                <NavLinkComponent className='mr-5' href='/' more={false} icon={<NotificationsIcon style={{ fontSize:25 }} />} label='Notifications' last={false}/>
-                <NavLinkComponent href='/' more={true} icon={<Avatar style={{ width:'4vh', height:'4vh'  }} src="https://yt3.ggpht.com/yti/ANoDKi5pL_cvUrjXj2_CHoonnmq4zF8Y6a3DWXJacvcq1w=s88-c-k-c0x00ffffff-no-rj-mo"/>} label='Me' last={true} moreIcon={<ArrowDropDownRoundedIcon/>}/>
+                <NavLinkComponent className='mr-5' more={false} icon={<HomeRoundedIcon style={{ fontSize:25 }} />} label='Home' last={false}/>
+                <NavLinkComponent className='mr-5' more={false} icon={<SupervisorAccountIcon style={{ fontSize:25 }} />} label='My Network' last={false}/>
+                <NavLinkComponent className='mr-5' more={false} icon={<WorkIcon style={{ fontSize:25 }}/>} label='Jobs' last={false} />
+                <NavLinkComponent className='mr-5' more={false} icon={<SmsIcon style={{ fontSize:25 }} />} label='Messages' last={false}/>
+                <NavLinkComponent className='mr-5' more={false} icon={<NotificationsIcon style={{ fontSize:25 }} />} label='Notifications' last={false}/>
+                {currentUser.photo!==''
+                ?<NavLinkComponent more={true} icon={<Avatar style={{ width:'4vh', height:'4vh'}} src={currentUser.photo}/>} label='Me' last={true} moreIcon={<ArrowDropDownRoundedIcon/>}/>
+                :<NavLinkComponent more={true} icon={<Avatar style={{ width:'4vh', height:'4vh', backgroundColor:setBGColor()}}>{currentUser.userName[0].toUpperCase()}</Avatar>} label='Me' last={true} moreIcon={<ArrowDropDownRoundedIcon/>}/>
+                }
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ border:'none' }} >
                     <span style={{ border:'none' }}>
                         <MoreHorizRoundedIcon/>
                     </span>
                 </Navbar.Toggle>
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <NavLinkComponent href='/' last={false} icon={<AppsIcon style={{ fontSize:25 }}/>} label='Work' more={true} moreIcon={<ArrowDropDownRoundedIcon/>}/>
+                    <div onClick={e => logoutOfApp(e)} >
+                        <NavLinkComponent className='mr-5' more={false} icon={<PowerSettingsNewIcon style={{ fontSize:25 }} />} label='Logout' last={false}/>
+                    </div>
                     <Nav>
-                        <Nav.Link href="/" id='try_premium' style={{ fontSize:12, color:'rgb(120,102,1)', width:'70%', textAlign:'center' }} >Try Premium Free for 1 month</Nav.Link>
+                        <Nav.Link  id='try_premium' style={{ fontSize:12, color:'rgb(120,102,1)', width:'70%', textAlign:'center' }} >Try Premium Free for 1 month</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

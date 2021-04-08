@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { ListGroup,InputGroup, FormControl, Button, Alert } from 'react-bootstrap'
 import PhotoIcon from '@material-ui/icons/Photo';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
@@ -8,9 +8,27 @@ import Avatar from '@material-ui/core/Avatar';
 import '../App.css'
 import { db } from '../firebase'
 import firebase from 'firebase'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 export const StartPost = () => {
     
+    const [currentUser, setCurrentUser] = useState({})
+
+    const user = useSelector(selectUser)
+
+    const setBGColor = () => {
+        return `rgb(${(0.8-Math.random())*255},${(0.8-Math.random())*255},${(0.8-Math.random())*255})`
+    }
+
+    useEffect(()=>{
+        db.collection('linkedInUsers').where('id','==',user.uid).get().then((docs) => {
+            docs.forEach((doc)=>{
+                setCurrentUser(doc.data());
+            })
+        })
+    },[user.uid])
+
     const startPostType = (color, icon, title) => {
         return (
             <div id='start_post_type' className='d-flex flex-direction-row align-items-center pl-2 pr-3 py-2 rounded' style={{ fontSize:15 }}>
@@ -21,25 +39,24 @@ export const StartPost = () => {
     }
 
     const [postLinear, setPostLinear] = useState('')
-
     const [postHeading, setPostHeading] = useState('')
-
     const [postContent, setPostContent] = useState('')
-
     const [postValidation, setPostValidation] = useState('')
-
     const [linearValidation, setLinearValidation] = useState('')
 
     const submitLinearPost = (e) => {
+        console.log(currentUser);
         if(postLinear===''){
             setLinearValidation('Post cannot be empty')
         }
         else{
             db.collection('posts').add({
-                name:'Aditya Uday Ubale',
-                description:'2nd Year Institute of Engineering and Technology DAVV',
-                postDescription:'Daily posts',
+                name:currentUser.userName,
+                description:currentUser.catchyLine,
+                postDescription:`Casual post by ${currentUser.userName}`,
                 postContent:postLinear,
+                postedBy:currentUser.id,
+                image:currentUser.photo,
                 added:firebase.firestore.FieldValue.serverTimestamp()
             })
             setPostLinear('') 
@@ -53,10 +70,12 @@ export const StartPost = () => {
         }
         else{
             db.collection('posts').add({
-                name:'Aditya Uday Ubale',
-                description:'2nd Year Institute of Engineering and Technology DAVV',
+                name:currentUser.userName,
+                description:currentUser.catchyLine,
                 postDescription:postHeading,
                 postContent:postContent,
+                postedBy:currentUser.id,
+                image:currentUser.photo,
                 added:firebase.firestore.FieldValue.serverTimestamp()
             })
             setPostContent('')
@@ -74,7 +93,10 @@ export const StartPost = () => {
         <>
         <ListGroup>
             <ListGroup.Item className='border-bottom-0 pt-4' style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}} >
-                <Avatar src='https://yt3.ggpht.com/yti/ANoDKi5pL_cvUrjXj2_CHoonnmq4zF8Y6a3DWXJacvcq1w=s88-c-k-c0x00ffffff-no-rj-mo'/>
+                {currentUser.photo!==''
+                ?<Avatar src={currentUser.photo}/>
+                :<Avatar style={{ backgroundColor:setBGColor() }}>{currentUser.userName[0].toUpperCase()}</Avatar> 
+                }
                 <InputGroup size="lg" className='mr-2'>
                     <FormControl 
                         placeholder="Start a post" 

@@ -9,6 +9,10 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 export const Post = ({ image, name, description, postDescription, postContent  }) => {
     
+    const setBGColor = () => {
+        return `rgb(${(0.8-Math.random())*255},${(0.8-Math.random())*255},${(0.8-Math.random())*255})`
+    }
+
     const setResponses = (icon, title) => {
         return (
             <div id='post_responses' className='d-flex flex-direction-row align-items-center p-2 mr-2 rounded'>
@@ -21,7 +25,10 @@ export const Post = ({ image, name, description, postDescription, postContent  }
     return (
         <ListGroup className='mb-3 rounded'>
             <ListGroup.Item className='border-bottom-0 d-flex flex-direction-row pb-1'>
-                <Avatar src={image}/>
+                {image!=='' && image.length>1
+                ?<Avatar src={image}/>
+                :<Avatar style={{ backgroundColor:setBGColor() }}>{image}</Avatar>
+                }
                 <div className='ml-3'>
                     <div className='font-weight-bold pb-0 mb-0' id='name_post' style={{ color:'rgb(71,71,71)' }}>{name}</div>
                     <div className='font-weight-light text-secondary pt-0 mt-0'><small>{description}</small></div>

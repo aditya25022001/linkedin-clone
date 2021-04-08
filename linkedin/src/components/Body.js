@@ -4,7 +4,7 @@ import { ListGroup } from 'react-bootstrap'
 import { StartPost } from './StartPost'
 import { Post } from './Post'
 import { db } from '../firebase'
-import { Loader } from './Loader'
+import { PostSkeleton } from './PostSkeleton'
 
 export const Body = () => {
     
@@ -25,11 +25,18 @@ export const Body = () => {
         <ListGroup style={{ width:'100%' }}>
             <StartPost/>
             {posts.length===0 
-            ?<Loader/> 
+            ?<div>
+                <PostSkeleton/>
+                <PostSkeleton/>
+                <PostSkeleton/>
+                <PostSkeleton/>
+                <PostSkeleton/>
+                <PostSkeleton/>
+            </div> 
             :
              posts.map(post => (
                 <Post key={uuidv4()}
-                    image={post.data.image}
+                    image={post.data.image!==''? post.data.image : post.data.name[0].toUpperCase()}
                     name={post.data.name}
                     description={post.data.description}
                     postDescription={post.data.postDescription}

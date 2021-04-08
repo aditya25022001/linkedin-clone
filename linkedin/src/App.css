@@ -50,6 +50,9 @@
   transition-duration: 0.3s;
   cursor: pointer;
 }
+#message__signup {
+  display: none;
+}
 @media screen and (max-width: 63em) {
   #search_small,
   #hide_label_header,
@@ -68,6 +71,10 @@
 }
 #try_premium:hover,
 #name_post:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+#span__signup:hover {
   cursor: pointer;
   text-decoration: underline;
 }

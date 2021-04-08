@@ -78,3 +78,7 @@
   cursor: pointer;
   text-decoration: underline;
 }
+#sidebar__news:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}

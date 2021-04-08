@@ -23,7 +23,7 @@ export const Post = ({ image, name, description, postDescription, postContent  }
     }
 
     return (
-        <ListGroup className='mb-3 rounded'>
+        <ListGroup className='mb-2 rounded'>
             <ListGroup.Item className='border-bottom-0 d-flex flex-direction-row pb-1'>
                 {image!=='' && image.length>1
                 ?<Avatar src={image}/>

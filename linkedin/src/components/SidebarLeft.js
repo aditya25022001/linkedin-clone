@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
 import { db } from '../firebase'
 
-export const Sidebar = () => {
+export const SidebarLeft = () => {
 
     const [currentUser, setCurrentUser] = useState({})
 
@@ -23,7 +23,7 @@ export const Sidebar = () => {
 
     return (
         <ListGroup variant='flush' className='p-0' style={{ width:'27vh' }} >
-            <ListGroup.Item className='border-0 p-0 mb-3 rounded-bottom' >
+            <ListGroup.Item className='border-0 p-0 mb-2 rounded-bottom' >
                 <SidebarMe 
                     name={user.displayName} 
                     profilePic={currentUser.photo}

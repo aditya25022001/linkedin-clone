@@ -101,7 +101,7 @@ export const SignUp = () => {
 
     return (
         <>
-        {loginPage 
+        {!loginPage 
         ? <ListGroup className='pb-4 border-0' style={{ backgroundColor:'rgb(247,247,237)' }}>
             <ListGroup.Item className='align-items-center d-flex flex-direction-row h2 border-0 mx-auto pb-0' style={{ color:'rgb(2,110,199)', backgroundColor:'rgb(247,247,237)' }}>
                 <div className='font-weight-bolder'>Linked</div>
@@ -128,11 +128,11 @@ export const SignUp = () => {
                     <FormControl type='password' className='py-0' placeholder='Re-enter password' value={cnfPassword} onChange={e => setcnfPassword(e.target.value)}></FormControl>
                 </ListGroup.Item>
                 <ListGroup.Item className='border-bottom-0 pb-1'>
-                    <FormLabel className=' color-secondary h6'>Profile Photo URL<span style={{ color:'red' }}>*</span></FormLabel>
+                    <FormLabel className=' color-secondary h6'>Profile Photo URL</FormLabel>
                     <FormControl type="text" className='py-0' placeholder='Provide online link to your pic' value={profile} onChange={e => setProfile(e.target.value)}></FormControl>
                 </ListGroup.Item>
                 <ListGroup.Item className='border-bottom-0 pb-1'>
-                    <FormLabel className=' color-secondary h6'>Background Photo URL<span style={{ color:'red' }}>*</span></FormLabel>
+                    <FormLabel className=' color-secondary h6'>Background Photo URL</FormLabel>
                     <FormControl type="text" className='py-0' placeholder='Provide online link to your pic' value={profileBackground} onChange={e => setProfileBackground(e.target.value)}></FormControl>
                 </ListGroup.Item>
                 <ListGroup.Item className='border-bottom-0 pb-1'>
@@ -181,7 +181,7 @@ export const SignUp = () => {
                 </ListGroup.Item>
             </ListGroup>
             <ListGroup.Item className='border-0 mx-auto' style={{ backgroundColor:'rgb(247,247,237)' }}>
-                New to LinkedIn? <span id='span__signup' style={{ color:'rgb(2,110,199)' }} className='font-weight-bold' onClick={e => changeToSignIn(e)}>Join now</span>
+                New to LinkedIn? <span id='span__signup' style={{ color:'rgb(2,110,199)', fontWeight:600 }} onClick={e => changeToSignIn(e)}>Join now</span>
             </ListGroup.Item>
             <ListGroup.Item id='message__signup' style={{ backgroundColor:'rgb(247,247,237)'}} className='border-0 mx-auto'>
                 <Alert variant='danger'>{message}</Alert>

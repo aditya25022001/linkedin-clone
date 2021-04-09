@@ -82,3 +82,10 @@
   background-color: rgb(230, 230, 230);
   cursor: pointer;
 }
+#launch_another_news {
+  display: none;
+}
+#sidebar__news:hover
+  > #launch_another_news {
+  display: block;
+}

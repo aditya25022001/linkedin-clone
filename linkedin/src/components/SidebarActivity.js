@@ -33,7 +33,7 @@ export const SidebarActivity = () => {
     
     return (
         <ListGroup style={{ width:'27vh', position:'sticky', top:0 }}>
-            <ListGroup.Item className='border-bottom-0 p-0'>
+            <ListGroup.Item className='border-bottom-0 p-0' style={{ borderTopRightRadius:10, borderTopLeftRadius:10  }}>
                 {setListHeading('Recent')}
                 {setListItems('web developer')}
                 {setListItems('the international collegiate programming contest')}
@@ -60,7 +60,7 @@ export const SidebarActivity = () => {
                 {setListItems('lookingforjob', false,false)}
                 {setListItems('Show more', true, false)}
             </ListGroup.Item>
-            <ListGroup.Item className='px-0 py-1 mt-0'>
+            <ListGroup.Item className='px-0 py-1 mt-0' style={{ borderBottomRightRadius:10, borderBottomLeftRadius:10  }}>
                 {setListItems('Discover more', true, false)}
             </ListGroup.Item>
         </ListGroup>

@@ -92,7 +92,7 @@ export const StartPost = () => {
     return (
         <>
         <ListGroup>
-            <ListGroup.Item className='border-bottom-0 pt-4' style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}} >
+            <ListGroup.Item className='border-bottom-0 pt-4' style={{ display: 'flex', flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', borderTopRightRadius:10, borderTopLeftRadius:10}} >
                 {currentUser.photo!==''
                 ?<Avatar src={currentUser.photo}/>
                 :<Avatar style={{ backgroundColor:setBGColor() }}>{currentUser.userName[0].toUpperCase()}</Avatar> 
@@ -112,7 +112,9 @@ export const StartPost = () => {
             </ListGroup.Item>        
             <ListGroup.Item 
                 className={linearValidation==='' ? `px-5 pb-4` : `px-5 border-bottom-0 pb-2`} 
-                style={{ display: 'flex', flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                style={linearValidation==='' 
+                    ? { display: 'flex', flexDirection:'row', alignItems: 'center', justifyContent: 'space-between', borderBottomRightRadius:10, borderBottomLeftRadius:10}
+                    : { display: 'flex', flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
                 {startPostType('rgb(138,214,235)',<PhotoIcon/>,'Photo')}
                 {startPostType('rgb(117,217,124)',<VideoLibraryRoundedIcon/>,'Video')}
                 {startPostType('rgb(227,211,104)',<EventNoteRoundedIcon/>,'Event')}
@@ -129,25 +131,30 @@ export const StartPost = () => {
                 </div>
             </ListGroup.Item>
             {linearValidation!=='' &&             
-                <ListGroup.Item className='pt-0 pb-1'>
+                <ListGroup.Item className='pt-0 pb-1' style={{ borderBottomRightRadius:10, borderBottomLeftRadius:10 }}>
                     <Alert variant='danger'>{linearValidation}</Alert>
                 </ListGroup.Item>
             }
             <hr/>
             <div id='write_article' style={{ width:'auto' }}>
                 <ListGroup>
-                    <ListGroup.Item className='border-bottom-0 mb-0'>
+                    <ListGroup.Item className='border-bottom-0 mb-0' style={{ borderTopRightRadius:10, borderTopLeftRadius:10 }}>
                         <FormControl placeholder='Article heading' id='post_heading' value={postHeading} onChange={e => setPostHeading(e.target.value)}/>
                     </ListGroup.Item>
                     <ListGroup.Item className='border-bottom-0 mb-0'>
                         <FormControl as='textarea' id='post_content' value={postContent} placeholder='Article starts here...' rows={5} onChange={e => setPostContent(e.target.value)}/>
                     </ListGroup.Item>
                     <ListGroup.Item 
-                        className={postValidation==='' ? `mt-0` : `mt-0 border-bottom-0`}>
+                        className={postValidation==='' ? `mt-0` : `mt-0 border-bottom-0`}
+                        style={postValidation==='' 
+                        ?{ borderBottomRightRadius:10, borderBottomLeftRadius:10 }
+                        :{}
+                        }
+                        >
                         <Button type='submit' onClick={e => submitHandler(e)} className='float-right'>POST</Button>
                     </ListGroup.Item>
                     {postValidation!=='' &&
-                        <ListGroup.Item><Alert variant='danger'>{postValidation}</Alert></ListGroup.Item>
+                        <ListGroup.Item style={{ borderBottomRightRadius:10, borderBottomLeftRadius:10  }}><Alert variant='danger'>{postValidation}</Alert></ListGroup.Item>
                     }
                 </ListGroup>
             </div>

@@ -31,8 +31,8 @@ export const SidebarMe = ({ name, description, profileViewers, connections, prof
             {!profileBackground && profileBackground!=='' 
             ? <Skeleton variant='rect' animation='wave' style={{ width:'27vh', height:'8vh' }}/> 
             : profileBackground!=='' 
-            ? <Image className='rounded-top' src={profileBackground} style={{ width:'27vh', height:'8vh' }}/>
-            : <div className='rounded-top' style={{ width:'27vh', height:'8vh', backgroundColor:setBGColor() }}></div>
+            ? <Image src={profileBackground} style={{ width:'27vh', height:'8vh', borderTopRightRadius:10, borderTopLeftRadius:10 }}/>
+            : <div style={{ width:'27vh', height:'8vh', backgroundColor:setBGColor(), borderTopRightRadius:10, borderTopLeftRadius:10  }}></div>
             }
             <ListGroup.Item style={{ alignItems:'center', textAlign:'center' }}>
                 <div style={{ textAlign:'center', alignItems:'center', marginTop:'-30%'}} className='mb-3'>
@@ -66,7 +66,7 @@ export const SidebarMe = ({ name, description, profileViewers, connections, prof
                     <div style={{ fontWeight:500, color:'black', fontSize:'1.49vh' }}><a href='/' style={{ color:'black' }}>Try Premium Free for 1 Month</a></div>
                 </div>
             </ListGroup.Item>
-            <ListGroup.Item style={{ display: 'flex', flexDirection:'row', alignItems: 'center'}} className="items_sidebar">
+            <ListGroup.Item style={{ display: 'flex', flexDirection:'row', alignItems: 'center', borderBottomRightRadius:10, borderBottomLeftRadius:10 }} className="items_sidebar">
                 <div>
                     <BookmarkIcon style={{ fontSize:'3vh', color:'darkgray' }} className='mr-2'/>
                 </div>

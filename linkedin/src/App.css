@@ -20,6 +20,10 @@
 #header_icons:hover {
   color: black;
 }
+#sidebar_left {
+  position: sticky;
+  top: 80px;
+}
 #sidebar_link_heading:hover,
 #sidebar_link_heading:hover
   > #sidebar_show_more {
@@ -40,6 +44,9 @@
 #show_more_post:hover {
   background-color: rgb(245, 239, 239);
   cursor: pointer;
+}
+#input_post:hover {
+  cursor: text;
 }
 .App {
   height: 100vh;

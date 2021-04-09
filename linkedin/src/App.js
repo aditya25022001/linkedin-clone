@@ -42,14 +42,14 @@ function App() {
   return (
       <div className="App">
         {!user && Object.keys(users).length===0 
-        ? <div style={{ textAlign: 'center', paddingTop: '23%'}}>
+        ? <div style={{ textAlign: 'center', paddingTop: '16%'}}>
             <Loader/>
           </div>  
         : !user ? <SignUp/>
         :<>
         <Header/>
         <div id='body_posts' style={{ backgroundColor:'rgb(247,247,237)' }}>
-          <Container className='App_sidebar py-4' style={{ display: 'flex', flexDirection:'row', width:'100%'}} >
+          <Container className='py-4' style={{ display: 'flex', flexDirection:'row', width:'100%'}} >
             <div className='pr-2' id='sidebar_left'>
               <SidebarLeft/>
             </div>

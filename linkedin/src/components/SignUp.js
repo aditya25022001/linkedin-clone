@@ -111,7 +111,7 @@ export const SignUp = () => {
                 Make the most of your professional life
             </ListGroup.Item>
             <ListGroup className='mx-auto rounded'  style={{ width:'50vh' }}>
-                <ListGroup.Item className='border-bottom-0 pb-1'>
+                <ListGroup.Item className='border-bottom-0 pb-1' style={{ borderTopRightRadius:10, borderTopLeftRadius:10 }}>
                     <FormLabel className=' color-secondary h6'>Name<span style={{ color:'red' }}>*</span></FormLabel>
                     <FormControl type='text' className='py-0' placeholder='Enter full name' value={name} onChange={e => setName(e.target.value)}></FormControl>
                 </ListGroup.Item>
@@ -146,7 +146,7 @@ export const SignUp = () => {
                 <ListGroup.Item className='border-bottom-0 pb-1'>
                     <Button style={{ width:'100%', borderRadius:150, backgroundColor:'rgb(2,110,199)', fontWeight:400 }} className='py-2' onClick={e => signUpHandler(e)}>Join Now!</Button>
                 </ListGroup.Item>
-                <ListGroup.Item className='text-center'>
+                <ListGroup.Item className='text-center' style={{  borderBottomRightRadius:10, borderBottomLeftRadius:10  }}>
                     Already on LinkedIn?
                     <span id='span__signup' style={{ fontWeight:600, color:'rgb(2,110,199)' }} onClick={e => changeToSignIn(e)}>Sign In</span>
                 </ListGroup.Item>
@@ -161,7 +161,7 @@ export const SignUp = () => {
                 <LinkedInIcon style={{ fontSize:'4.6vh' }} />
             </ListGroup.Item>
             <ListGroup className='mx-auto rounded' style={{ boxShadow:"1px 1px 10px rgb(237,235,228)" }}>
-                <ListGroup.Item className='border-bottom-0'>
+                <ListGroup.Item className='border-bottom-0' style={{ borderTopRightRadius:10, borderTopLeftRadius:10  }}>
                     <div className='font-weight-bold h5'>Sign in</div>
                     <div className='text-muted'>Stay updated on your professional world</div>
                 </ListGroup.Item>
@@ -176,14 +176,14 @@ export const SignUp = () => {
                 <ListGroup.Item className='border-bottom-0' style={{ color:'rgb(2,110,199)', fontWeight:600 }}>
                     Forgot password?
                 </ListGroup.Item>
-                <ListGroup.Item className='pb-4'>
+                <ListGroup.Item className='pb-4' style={{borderBottomRightRadius:10, borderBottomLeftRadius:10 }}>
                     <Button style={{ width:'100%', borderRadius:150, backgroundColor:'rgb(2,110,199)' }} onClick={e => signInHandler(e)}>Sign In</Button>
                 </ListGroup.Item>
             </ListGroup>
             <ListGroup.Item className='border-0 mx-auto' style={{ backgroundColor:'rgb(247,247,237)' }}>
                 New to LinkedIn? <span id='span__signup' style={{ color:'rgb(2,110,199)', fontWeight:600 }} onClick={e => changeToSignIn(e)}>Join now</span>
             </ListGroup.Item>
-            <ListGroup.Item id='message__signup' style={{ backgroundColor:'rgb(247,247,237)'}} className='border-0 mx-auto'>
+            <ListGroup.Item id='message__signup' style={{ backgroundColor:'rgb(247,247,237)' }} className='border-0 mx-auto'>
                 <Alert variant='danger'>{message}</Alert>
             </ListGroup.Item>
         </ListGroup>

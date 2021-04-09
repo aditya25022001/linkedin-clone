@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { ListGroup } from 'react-bootstrap'
 import { StartPost } from './StartPost'
 import { Post } from './Post'
 import { db } from '../firebase'
 import { PostSkeleton } from './PostSkeleton'
+import FlipMove from 'react-flip-move'
 
 export const Body = () => {
     
@@ -33,16 +33,18 @@ export const Body = () => {
                 <PostSkeleton/>
                 <PostSkeleton/>
             </div> 
-            :
-             posts.map(post => (
-                <Post key={uuidv4()}
-                    image={post.data.image!==''? post.data.image : post.data.name[0].toUpperCase()}
-                    name={post.data.name}
-                    description={post.data.description}
-                    postDescription={post.data.postDescription}
-                    postContent={post.data.postContent}
-                />
-            ))}
+            :<FlipMove>
+                {posts.map(post => (
+                   <Post key={post.id}
+                       image={post.data.image!==''? post.data.image : post.data.name[0].toUpperCase()}
+                       name={post.data.name}
+                       description={post.data.description}
+                       postDescription={post.data.postDescription}
+                       postContent={post.data.postContent}
+                   />
+               ))}
+            </FlipMove>
+            }
         </ListGroup>
     )
 }

@@ -110,7 +110,7 @@ export const SignUp = () => {
             <ListGroup.Item className='mx-auto border-0 pt-0 text-center mb-2' style={{ fontWeight:400, fontSize:'4vh',backgroundColor:'rgb(247,247,237)'  }}>
                 Make the most of your professional life
             </ListGroup.Item>
-            <ListGroup className='mx-auto rounded'  style={{ width:'50vh' }}>
+            <ListGroup className='mx-auto rounded' style={{ width:'45vh' }}>
                 <ListGroup.Item className='border-bottom-0 pb-1' style={{ borderTopRightRadius:10, borderTopLeftRadius:10 }}>
                     <FormLabel className=' color-secondary h6'>Name<span style={{ color:'red' }}>*</span></FormLabel>
                     <FormControl type='text' className='py-0' placeholder='Enter full name' value={name} onChange={e => setName(e.target.value)}></FormControl>
